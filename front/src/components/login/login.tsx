@@ -51,19 +51,18 @@ export default function LoginForm() {
       setIsLoading(false)
     }
   }
-
+  
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex flex-col items-center justify-center p-4">
-      <div className="w-full max-w-3xl bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl border border-gray-700 shadow-2xl overflow-hidden relative backdrop-blur-sm">
-        <div className="grid grid-cols-1 md:grid-cols-2 relative min-h-[450px]">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex flex-col items-center justify-center p-4 ">
+     <div className="w-full max-w-3xl bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl border border-gray-700 shadow-2xl overflow-hidden relative backdrop-blur-sm">
+        <div className="grid grid-cols-2 relative min-h-[450px]">
 
-          {/* Left - Login Form */}
+          {/* Left Side - Login Form */}
           <div className="p-8 md:p-12">
             <h2 className="text-2xl font-semibold text-white mb-1">¡Hola! 👋</h2>
             <p className="text-lg text-gray-300 mb-8">
               Bienvenido al sistema de gestión. Por favor iniciá sesión para comenzar.
             </p>
-
             {error && (
               <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded text-sm mb-4">
                 {error}
@@ -71,34 +70,39 @@ export default function LoginForm() {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
-              <Input
-                id="username"
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-gray-700 border-gray-600 text-white"
-                placeholder="admin"
-              />
-              <Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="bg-gray-700 border-gray-600 text-white"
-                placeholder="**********"
-              />
+              <div className="space-y-2">
+                <Input
+                  id="username"
+                  type="text"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="bg-gray-700 border-gray-600 text-white"
+                  placeholder="admin"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="bg-gray-700 border-gray-600 text-white"
+                  placeholder="**********"
+                />
+              </div>
               <Button
                 type="submit"
                 className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-full"
                 disabled={isLoading}
               >
-                {isLoading ? "Cargando..." : "Iniciar sesión"}
+                {isLoading ? "LOGGING IN..." : "LOGIN"}
               </Button>
             </form>
           </div>
 
-          {/* Right - Image */}
-          <div className="hidden md:block relative h-full w-full overflow-hidden object-cover transform -skew-x-12 translate-x-12">
+          {/* Right Side - Welcome Message */}
+          <div className="h-full w-full overflow-hidden object-cover transform -skew-x-12 translate-x-12">
             <Image
               src="/login.jpg"
               alt="Ilustración de bienvenida"
