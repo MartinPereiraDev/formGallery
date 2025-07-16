@@ -56,11 +56,11 @@ export default function LoginForm12() {
           backdropFilter: "blur(18px)",
           WebkitBackdropFilter: "blur(18px)",
           border: "2px solid rgba(255,255,255,0.18)",
-          padding: "2.5rem 2.5rem 2rem 2.5rem",
+          padding: "2rem 2rem 2rem 2rem",
         }}
       >
         {/* Avatar */}
-        <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-28 h-28 rounded-full bg-white flex items-center justify-center shadow-xl z-10">
+        <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-26 h-26 rounded-full bg-white flex items-center justify-center shadow-xl z-10">
           <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-500 to-pink-400 flex items-center justify-center">
             <User className="w-12 h-12 text-white" />
           </div>
