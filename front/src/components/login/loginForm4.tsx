@@ -61,7 +61,6 @@ export function LoginForm4() {
               <span className="text-2xl">🔮</span>
             </div>
             <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">Iniciar Sesión</h2>
-            <p className="text-white/90 text-sm font-medium">Diseño con efecto cristal</p>
           </div>
 
           <form className="space-y-5" onSubmit={handleSubmit}>

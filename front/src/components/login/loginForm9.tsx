@@ -40,7 +40,7 @@ export default function LoginForm9() {
       })
       setEmail("")
       setPassword("")
-    } catch (err) {
+    } catch {
       toast({
         title: "Credenciales inválidas",
         description: "Verifica tu usuario y contraseña",

@@ -1,6 +1,6 @@
 "use client"
 
-import GalleryView from "../components/auth/GalleryView"
+import GalleryView from "src/components/auth/GalleryView"
 
 export default function Home() {
   return (

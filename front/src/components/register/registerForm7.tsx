@@ -48,7 +48,7 @@ export default function RegisterForm7() {
     } catch {
       toast({
         title: "Datos incorrectos",
-        description: "¿Seguro que no eres un payaso?",
+        description: "Vuelve a intentarlo",
         variant: "destructive"
       })
       setShake(true)
@@ -63,8 +63,8 @@ export default function RegisterForm7() {
         <div className="flex justify-center mb-6">
           <Smile className="w-16 h-16 text-pink-400 animate-bounce drop-shadow-lg" />
         </div>
-        <h2 className="text-2xl font-extrabold text-pink-500 text-center mb-2 tracking-tight animate-fade-in">¡Registro divertido!</h2>
-        <p className="text-center text-cyan-600 mb-6 animate-fade-in delay-100">Crea tu cuenta y sonríe 😄</p>
+        <h2 className="text-2xl font-extrabold text-pink-500 text-center mb-2 tracking-tight animate-fade-in">¡Registrate!</h2>
+        <p className="text-center text-cyan-600 mb-6 animate-fade-in delay-100">Crea tu cuenta y disfruta de nuestros servicios</p>
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="name7" className="block text-sm font-bold text-pink-500 mb-1">Nombre</label>
@@ -125,9 +125,9 @@ export default function RegisterForm7() {
           {error && <div className="text-red-500 text-xs text-center mt-2 animate-shake">{error}</div>}
           <Button
             type="submit"
-            className="w-full h-12 rounded-xl bg-gradient-to-r from-pink-400 via-yellow-300 to-cyan-400 hover:from-pink-500 hover:to-cyan-500 text-white font-extrabold shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in"
+            className="text-lg w-full h-12 rounded-xl bg-gradient-to-r from-pink-400 via-yellow-300 to-cyan-400 hover:from-pink-500 hover:to-cyan-500 text-white font-extrabold shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in"
           >
-            ¡Registrarme y sonreír!
+            ¡Registrarme!
           </Button>
         </form>
         <div className="text-center mt-2">

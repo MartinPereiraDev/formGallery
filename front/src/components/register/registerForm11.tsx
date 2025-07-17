@@ -5,6 +5,7 @@ import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import Image from "next/image"
 import { Eye, EyeOff } from "lucide-react"
+import { useToast } from "../../hooks/use.toast"
 
 const gifs = {
   aburrido: "/gatito-aburrido.gif",
@@ -18,6 +19,7 @@ export default function RegisterForm11() {
   const [touched, setTouched] = useState({ username: false, password: false, confirm: false })
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
+  const { toast } = useToast()
 
   let estado: keyof typeof gifs = "aburrido"
   if (userData.username) estado = "apurado"
@@ -51,7 +53,10 @@ export default function RegisterForm11() {
     const errs = validate(userData)
     setErrors(errs)
     if (!errs.username && !errs.password && !errs.confirm) {
-      alert("¡Registro exitoso!")
+      toast({
+        title: "¡Registro exitoso!",
+        description: `¡Bienvenido, ${userData.username}!`,
+      })
       setUserData({ username: "", password: "", confirm: "" })
       setTouched({ username: false, password: false, confirm: false })
       setErrors({ username: "", password: "", confirm: "" })

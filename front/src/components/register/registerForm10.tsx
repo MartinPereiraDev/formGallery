@@ -5,6 +5,7 @@ import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import Image from "next/image"
 import { Eye, EyeOff } from "lucide-react"
+import { useToast } from "../../hooks/use.toast"
 
 const gifs = {
   aburrido: "/gatito-aburrido.gif",
@@ -18,6 +19,7 @@ export default function RegisterForm10() {
   const [touched, setTouched] = useState({ username: false, password: false, confirm: false })
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
+  const { toast } = useToast()
 
   let estado: keyof typeof gifs = "aburrido"
   if (userData.username) estado = "apurado"
@@ -51,7 +53,10 @@ export default function RegisterForm10() {
     const errs = validate(userData)
     setErrors(errs)
     if (!errs.username && !errs.password && !errs.confirm) {
-      alert("¡Registro exitoso!")
+      toast({
+        title: "¡Registro exitoso!",
+        description: `¡Bienvenido, ${userData.username}!`,
+      })
       setUserData({ username: "", password: "", confirm: "" })
       setTouched({ username: false, password: false, confirm: false })
       setErrors({ username: "", password: "", confirm: "" })
@@ -60,7 +65,7 @@ export default function RegisterForm10() {
 
   return (
     <div className="w-full max-w-md mx-auto bg-white rounded-3xl shadow-xl p-8 border-4 border-gray-200 flex flex-col items-center relative font-mono">
-      <div className={`w-32 h-32 mb-6 rounded-full overflow-hidden border-2 border-blue-200 bg-gray-100 flex items-center justify-center shadow-[0_4px_24px_0_rgba(0,0,0,0.10)] shadow-inner`} style={{boxShadow: 'inset 0 4px 16px 0 #bcd0e6, 0 4px 24px 0 #bcd0e6'}}>
+      <div className={`w-32 h-32 mb-6 rounded-full overflow-hidden border-2 border-blue-200 bg-gray-100 flex items-center justify-center`} style={{boxShadow: 'inset 0 4px 16px 0 #bcd0e6, 0 4px 24px 0 #bcd0e6'}}>
         <Image src={gifs[estado]} alt="Gatito animado" width={112} height={112} className="object-cover" />
       </div>
       <h2 className="text-3xl font-bold text-blue-600 mb-4 tracking-wide text-center font-mono" style={{letterSpacing: 1}}>

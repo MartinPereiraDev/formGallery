@@ -39,14 +39,14 @@ export default function LoginForm7() {
       await fakeLogin({ email, contraseña: password })
       toast({
         title: "¡Inicio de sesión exitoso!",
-        description: "¡Bienvenido, usuario divertido!",
+        description: "¡Bienvenido, usuario!",
       })
       setEmail("")
       setPassword("")
     } catch {
       toast({
-        title: "Credenciales incorrectas",
-        description: "¿Seguro que no eres un payaso?",
+        title: "Acceso denegado",
+        description: "Usuario o contraseña incorrectos.",
         variant: "destructive"
       })
       setShake(true)
@@ -61,8 +61,8 @@ export default function LoginForm7() {
         <div className="flex justify-center mb-6">
           <Smile className="w-16 h-16 text-pink-400 animate-bounce drop-shadow-lg" />
         </div>
-        <h2 className="text-2xl font-extrabold text-pink-500 text-center mb-2 tracking-tight animate-fade-in">¡Login divertido!</h2>
-        <p className="text-center text-cyan-600 mb-6 animate-fade-in delay-100">Accede y sonríe 😄</p>
+        <h2 className="text-2xl font-extrabold text-pink-500 text-center mb-2 tracking-tight animate-fade-in">Inicia sesión</h2>
+        <p className="text-center text-cyan-600 mb-6 animate-fade-in delay-100">Accede y disfruta de nuestros servicios</p>
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="email7" className="block text-sm font-bold text-pink-500 mb-1">Email</label>

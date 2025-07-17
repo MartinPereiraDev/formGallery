@@ -100,9 +100,22 @@ export default function GalleryView() {
         <h1 className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-amber-400 via-fuchsia-600 to-indigo-500 bg-clip-text text-transparent mb-4 font-serif tracking-tight drop-shadow-lg">
           Galería de Formulario
         </h1>
-        <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
+        <p className="text-zinc-400 text-lg max-w-2xl mx-auto mb-6">
         Inspirate con esta galería de formularios modernos, responsivos y optimizados para proyectos con React y TailwindCSS.
         </p>
+        
+        {/* Información de credenciales simuladas */}
+        <div className="bg-zinc-800/50 backdrop-blur-sm rounded-xl border border-zinc-700/50 w-md mx-auto">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <span className="text-amber-400 text-sm">🔑</span>
+            <span className="text-zinc-300 text-lg font-medium">Credenciales Simuladas</span>
+          </div>
+          <div className="text-zinc-400 text-xs space-y-1">
+            <p><span className="text-amber-400 text-sm">Email:</span> <span className="text-zinc-300 text-sm">admin@gmail.com</span></p>
+            <p><span className="text-amber-400 text-sm">Contraseña:</span> <span className="text-zinc-300 text-sm">admin123</span></p>
+            <p className="text-zinc-500 text-xs mt-2 italic">* Datos de prueba para demostración</p>
+          </div>
+        </div>
       </header>
 
       {/* Navegación */}
@@ -110,7 +123,7 @@ export default function GalleryView() {
         {(["login", "register"] as const).map((tab) => (
           <button
             key={tab}
-            className={`px-8 py-4 font-semibold text-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400/50 rounded-lg ${
+            className={`px-4 py-2 md:px-8 md:py-4 font-semibold text-sm md:text-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400/50 rounded-lg ${
               activeTab === tab
                 ? "bg-gradient-to-r from-amber-400 to-orange-500 text-black shadow-lg transform scale-105"
                 : "bg-transparent text-zinc-400 hover:text-amber-400 hover:bg-zinc-800/50"

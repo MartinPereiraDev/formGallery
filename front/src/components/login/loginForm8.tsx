@@ -59,7 +59,7 @@ export default function LoginForm8() {
         <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center mb-4 shadow-lg border border-zinc-700">
           <Lock className="w-8 h-8 text-amber-400" />
         </div>
-        <h2 className="text-4xl font-extrabold text-white tracking-tight mb-2 font-serif">Exclusive Access</h2>
+        <h2 className="text-4xl font-extrabold text-white tracking-tight mb-2 font-serif">Acceso Exclusivo</h2>
         <p className="text-zinc-400 text-lg font-light">Panel privado para miembros premium</p>
       </div>
       <form className="space-y-7 relative z-10" onSubmit={handleSubmit}>
@@ -111,10 +111,7 @@ export default function LoginForm8() {
           className="w-full h-12 rounded-xl bg-gradient-to-r from-zinc-800 via-zinc-900 to-black hover:from-amber-400 hover:to-fuchsia-600 text-white font-semibold shadow-lg border border-zinc-700 transition-all duration-200 text-lg tracking-wide"
         >
           Entrar
-        </Button>
-        <div className="text-right mt-2">
-          <a href="#" className="text-sm text-zinc-400 hover:text-amber-400 hover:underline transition">¿Olvidaste tu contraseña?</a>
-        </div>
+        </Button>     
         <div className="text-center mt-4">
           <span className="text-sm text-zinc-400">
             ¿No tienes cuenta?{" "}
@@ -133,7 +130,6 @@ export default function LoginForm8() {
           </span>
         </div>
       </form>
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs text-zinc-600 font-mono tracking-widest select-none">© 2024 Black Label Access</div>
     </div>
   )
 }

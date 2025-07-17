@@ -5,6 +5,7 @@ import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 import Image from "next/image"
+import { useToast } from "../../hooks/use.toast"
 
 export default function RegisterForm1() {
   const [name, setName] = useState("")
@@ -12,6 +13,7 @@ export default function RegisterForm1() {
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
+  const { toast } = useToast()
 
   const fakeRegister = ({ name, email, contraseña }: { name: string; email: string; contraseña: string }) => {
     return new Promise<{ token: string }>((resolve, reject) => {
@@ -35,6 +37,10 @@ export default function RegisterForm1() {
     setIsLoading(true)
     try {
       await fakeRegister({ name, email, contraseña: password })
+      toast({
+        title: "¡Registro exitoso!",
+        description: "Tu cuenta ha sido creada correctamente"
+      })
       setName("")
       setEmail("")
       setPassword("")

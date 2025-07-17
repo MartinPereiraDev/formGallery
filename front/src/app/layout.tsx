@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Componentes",
-  description: "Componenentes Reutilizables",
+  title: "Galería de Formularios",
+  description: "Colección de formularios modernos y responsivos para React y Next.js",
 };
 
 export default function RootLayout({

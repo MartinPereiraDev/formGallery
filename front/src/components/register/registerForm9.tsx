@@ -5,6 +5,7 @@ import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 import { Checkbox } from "../ui/checkbox"
+import { useToast } from "../../hooks/use.toast"
 
 export default function RegisterForm9() {
   const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ export default function RegisterForm9() {
     acceptNewsletter: false
   })
   const [isLoading, setIsLoading] = useState(false)
+  const { toast } = useToast()
 
   const handleChange = (field: string, value: string | boolean) => {
     setFormData(prev => ({
@@ -32,7 +34,19 @@ export default function RegisterForm9() {
     // Simular proceso de registro
     setTimeout(() => {
       setIsLoading(false)
-      console.log("Register attempt:", formData)
+      toast({
+        title: "¡Registro exitoso!",
+        description: `¡Bienvenido, ${formData.firstName} ${formData.lastName}!`,
+      })
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        acceptTerms: false,
+        acceptNewsletter: false
+      })
     }, 2000)
   }
 
