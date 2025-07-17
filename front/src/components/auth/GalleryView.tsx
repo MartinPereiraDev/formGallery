@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useMemo, useCallback } from "react"
+import { useState, useEffect, useMemo, useCallback, useRef } from "react"
 import LoginForm1 from "../login/loginForm1"
 import LoginForm2 from "../login/loginForm2"
 import { LoginForm3 } from "../login/loginForm3"
@@ -25,7 +25,6 @@ import RegisterForm9 from "../register/registerForm9"
 import RegisterForm10 from "../register/registerForm10"
 import RegisterForm11 from "../register/registerForm11"
 import RegisterForm12 from "../register/registerForm12"
-import { motion } from "framer-motion"
 
 // Tipos TypeScript
 type TabType = "login" | "register"
@@ -69,14 +68,26 @@ const FORM_CONFIGS: Record<TabType, FormConfig[]> = {
 
 export default function GalleryView() {
   const [activeTab, setActiveTab] = useState<TabType>("login")
+  // Estado para el índice actual del carrusel
+  const [current, setCurrent] = useState(0)
 
   // Memoización de formularios para mejor rendimiento
   const currentForms = useMemo(() => FORM_CONFIGS[activeTab], [activeTab])
+  const total = currentForms.length
 
   // Manejadores optimizados con useCallback
   const handleTabChange = useCallback((tab: TabType) => {
     setActiveTab(tab)
+    setCurrent(0) // Reiniciar a la primera tarjeta al cambiar de tab
   }, [])
+
+  const handlePrev = useCallback(() => {
+    setCurrent((prev) => (prev === 0 ? total - 1 : prev - 1))
+  }, [total])
+
+  const handleNext = useCallback(() => {
+    setCurrent((prev) => (prev === total - 1 ? 0 : prev + 1))
+  }, [total])
 
   // Event listeners optimizados
   useEffect(() => {
@@ -94,8 +105,35 @@ export default function GalleryView() {
     }
   }, [handleTabChange])
 
+  // Variables para swipe táctil
+  const touchStartX = useRef<number | null>(null)
+  const touchEndX = useRef<number | null>(null)
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current !== null && touchEndX.current !== null) {
+      const diff = touchStartX.current - touchEndX.current
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          handleNext() // Swipe izquierda: siguiente
+        } else {
+          handlePrev() // Swipe derecha: anterior
+        }
+      }
+    }
+    touchStartX.current = null
+    touchEndX.current = null
+  }
+
   return (
-    <div className="min-h-screen bg-transparent text-white p-6">
+    <div>
       <header className="text-center mb-10">
         <h1 className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-pink-500 to-indigo-500 drop-shadow-xl">
           Galería de Formularios
@@ -124,38 +162,110 @@ export default function GalleryView() {
         </div>
       </div>
 
-      {/* Cards */}
-      <main className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-        {currentForms.map((formConfig, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: index * 0.05 }}
-            className="bg-zinc-900/40 border border-zinc-800/60 rounded-2xl p-6 shadow-lg backdrop-blur-sm relative"
-          >
-            <div className="absolute top-4 right-4">
-              <span className="text-xs px-3 py-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-black rounded-full font-semibold shadow">
-                {activeTab === "login" ? "Login" : "Registro"}
-              </span>
-            </div>
-            <h3 className="text-xl font-bold mb-6 text-white group-hover:text-yellow-400 transition">
-              {formConfig.title}
-            </h3>
-            <div className="min-h-[400px] flex items-center justify-center">
-              {formConfig.component}
-            </div>
-          </motion.div>
-        ))}
-      </main>
+      {/* Carrusel tipo Aceternity UI */}
+      <div
+        className="relative flex justify-center items-center h-[500px] md:h-[600px] w-full overflow-x-visible select-none"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        {currentForms.map((formConfig, index) => {
+          // Posición relativa al slide actual
+          const offset = index - current
+          let style: React.CSSProperties = {}
+          let zIndex = 0
+          let visible = false
 
-      {/* Simulated Credentials */}
-      <section className="mt-16 max-w-md mx-auto bg-zinc-900/30 rounded-xl border border-zinc-700/40 p-4 text-center text-zinc-300 shadow">
-        <h4 className="text-amber-400 font-semibold mb-2">🔐 Credenciales de prueba</h4>
-        <p className="text-sm">Email: <span className="text-white">admin@gmail.com</span></p>
-        <p className="text-sm">Contraseña: <span className="text-white">admin123</span></p>
-        <p className="text-xs text-zinc-500 mt-2 italic">* Solo para demostración visual</p>
-      </section>
+          if (offset === 0) {
+            // Slide central
+            style = {
+              transform: "translateX(0) scale(1) rotateY(0deg)",
+              opacity: 1,
+              zIndex: 30,              
+              marginTop: 0,
+            }
+            zIndex = 30
+            visible = true
+          } else if (offset === -1 || (current === 0 && index === total - 1)) {
+            // Slide anterior (izquierda)
+            style = {
+              transform: "translateX(-60%) scale(0.85) rotateY(25deg)",
+              opacity: 0.5,
+              zIndex: 20,
+              filter: "blur(1px)",
+              marginTop: "60px",
+            }
+            zIndex = 20
+            visible = true
+          } else if (offset === 1 || (current === total - 1 && index === 0)) {
+            // Slide siguiente (derecha)
+            style = {
+              transform: "translateX(60%) scale(0.85) rotateY(-25deg)",
+              opacity: 0.5,
+              zIndex: 20,
+              filter: "blur(1px)",
+              marginTop: "60px",
+            }
+            zIndex = 20
+            visible = true
+          } else {
+            // Ocultar los demás
+            style = {
+              opacity: 0,
+              pointerEvents: "none",
+              zIndex: 0,
+            }
+            zIndex = 0
+            visible = false
+          }
+
+          return (
+            <div
+              key={index}
+              style={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                width: "min(95vw, 420px)",
+                minWidth: "350px",
+                maxWidth: "420px",
+                height: "min(90vw, 520px)",
+                minHeight: "400px",
+                maxHeight: "520px",
+                transform: `translate(-50%, -50%) ${style.transform || ''}`,
+                opacity: style.opacity,
+                zIndex: zIndex,
+                boxShadow: style.boxShadow,
+                filter: style.filter,
+                transition: "all 0.6s cubic-bezier(0.4,0,0.2,1)",
+                pointerEvents: visible ? "auto" : "none",
+              }}
+            >
+              
+              <div className="w-full h-full flex items-center justify-center">
+                {formConfig.component}
+              </div>
+            </div>
+          )
+        })}
+        {/* Controles de navegación */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-4 z-40">
+          <button
+            onClick={handlePrev}
+            className="w-10 h-10 flex items-center justify-center bg-zinc-800 text-white rounded-full hover:bg-yellow-400 hover:text-black transition border-2 border-transparent focus:border-yellow-400"
+            aria-label="Anterior"
+          >
+            &#8592;
+          </button>
+          <button
+            onClick={handleNext}
+            className="w-10 h-10 flex items-center justify-center bg-zinc-800 text-white rounded-full hover:bg-yellow-400 hover:text-black transition border-2 border-yellow-400"
+            aria-label="Siguiente"
+          >
+            &#8594;
+          </button>
+        </div>
+      </div>
 
       <footer className="mt-12 text-center text-zinc-500 text-sm">
         <p>
