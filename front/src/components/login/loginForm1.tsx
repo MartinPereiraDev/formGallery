@@ -70,7 +70,7 @@ export default function LoginForm1() {
       <div className="w-full max-w-3xl rounded-lg shadow-xl overflow-hidden relative backdrop-blur-lg">
         <div className="grid grid-cols-2 relative min-h-[450px] border border-gray-700 rounded-lg overflow-hidden">
           <div className="p-8 md:p-8">
-            <h2 className="text-2xl font-semibold text-gray-200 mb-8 md:mb-1">¡Hola! ��</h2>
+            <h2 className="text-2xl font-semibold text-gray-200 mb-8 md:mb-1">¡Hola!</h2>
             <p className="text-lg text-gray-300 mb-8 hidden md:block">
               Bienvenido al sistema de gestión. Por favor iniciá sesión para comenzar.
             </p>

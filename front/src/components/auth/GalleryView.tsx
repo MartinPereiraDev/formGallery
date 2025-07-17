@@ -25,6 +25,7 @@ import RegisterForm9 from "../register/registerForm9"
 import RegisterForm10 from "../register/registerForm10"
 import RegisterForm11 from "../register/registerForm11"
 import RegisterForm12 from "../register/registerForm12"
+import { motion } from "framer-motion"
 
 // Tipos TypeScript
 type TabType = "login" | "register"
@@ -94,84 +95,71 @@ export default function GalleryView() {
   }, [handleTabChange])
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-start bg-gradient-to-br from-black via-zinc-900 to-neutral-800 py-12 px-4">
-      {/* Header */}
-      <header className="text-center mb-12">
-        <h1 className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-amber-400 via-fuchsia-600 to-indigo-500 bg-clip-text text-transparent mb-4 font-serif tracking-tight drop-shadow-lg">
-          Galería de Formulario
+    <div className="min-h-screen bg-transparent text-white p-6">
+      <header className="text-center mb-10">
+        <h1 className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-pink-500 to-indigo-500 drop-shadow-xl">
+          Galería de Formularios
         </h1>
-        <p className="text-zinc-400 text-lg max-w-2xl mx-auto mb-6">
-        Inspirate con esta galería de formularios modernos, responsivos y optimizados para proyectos con React y TailwindCSS.
+        <p className="text-zinc-400 mt-4 max-w-xl mx-auto">
+          Explora diseños modernos y reutilizables para login y registro con React + Tailwind.
         </p>
-        
-        {/* Información de credenciales simuladas */}
-        <div className="bg-zinc-800/50 backdrop-blur-sm rounded-xl border border-zinc-700/50 w-md mx-auto">
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <span className="text-amber-400 text-sm">🔑</span>
-            <span className="text-zinc-300 text-lg font-medium">Credenciales Simuladas</span>
-          </div>
-          <div className="text-zinc-400 text-xs space-y-1">
-            <p><span className="text-amber-400 text-sm">Email:</span> <span className="text-zinc-300 text-sm">admin@gmail.com</span></p>
-            <p><span className="text-amber-400 text-sm">Contraseña:</span> <span className="text-zinc-300 text-sm">admin123</span></p>
-            <p className="text-zinc-500 text-xs mt-2 italic">* Datos de prueba para demostración</p>
-          </div>
-        </div>
       </header>
 
-      {/* Navegación */}
-      <nav className="flex mb-12 rounded-xl overflow-hidden border border-zinc-800 shadow-lg bg-zinc-900/50 backdrop-blur-sm">
-        {(["login", "register"] as const).map((tab) => (
-          <button
-            key={tab}
-            className={`px-4 py-2 md:px-8 md:py-4 font-semibold text-sm md:text-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400/50 rounded-lg ${
-              activeTab === tab
-                ? "bg-gradient-to-r from-amber-400 to-orange-500 text-black shadow-lg transform scale-105"
-                : "bg-transparent text-zinc-400 hover:text-amber-400 hover:bg-zinc-800/50"
-            }`}
-            onClick={() => handleTabChange(tab)}
-          >
-            {tab === "login" ? "Formularios de Login" : "Formularios de Registro"}
-          </button>
-        ))}
-      </nav>
-
-      {/* Contenido principal */}
-      <main className="w-full max-w-7xl flex justify-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl">
-          {currentForms.map((formConfig, index) => (
-            <div
-              key={index}
-              className="group relative bg-zinc-900/50 backdrop-blur-sm rounded-2xl border border-zinc-800 p-6 "
+      {/* Tabs */}
+      <div className="flex justify-center mb-12">
+        <div className="bg-zinc-800/40 border border-zinc-700/60 rounded-full flex p-1 gap-1">
+          {(["login", "register"] as const).map((tab) => (
+            <button
+              key={tab}
+              className={`px-6 py-2 text-sm md:text-base font-medium rounded-full transition-all ${
+                activeTab === tab
+                  ? "bg-gradient-to-r from-yellow-400 to-orange-500 text-black shadow-md"
+                  : "text-zinc-400 hover:text-yellow-300"
+              }`}
+              onClick={() => handleTabChange(tab)}
             >
-              {/* Badge de tipo */}
-              <div className="absolute top-4 right-4">
-                <span className="px-3 py-1 text-xs font-medium bg-gradient-to-r from-amber-400 to-orange-500 text-black rounded-full">
-                  {activeTab === "login" ? "Login" : "Registro"}
-                </span>
-              </div>
-
-              {/* Información del formulario */}
-              <div className="mb-4">
-                <h3 className="text-xl font-bold text-white mb-8 group-hover:text-amber-400 transition-colors">
-                  {formConfig.title}
-                </h3>               
-              </div>
-
-              {/* Contenedor del formulario */}
-              <div className="flex items-center justify-center min-h-[400px]">
-                {formConfig.component}
-              </div>
-
-            </div>
+              {tab === "login" ? "Login" : "Registro"}
+            </button>
           ))}
         </div>
+      </div>
+
+      {/* Cards */}
+      <main className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        {currentForms.map((formConfig, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: index * 0.05 }}
+            className="bg-zinc-900/40 border border-zinc-800/60 rounded-2xl p-6 shadow-lg backdrop-blur-sm relative"
+          >
+            <div className="absolute top-4 right-4">
+              <span className="text-xs px-3 py-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-black rounded-full font-semibold shadow">
+                {activeTab === "login" ? "Login" : "Registro"}
+              </span>
+            </div>
+            <h3 className="text-xl font-bold mb-6 text-white group-hover:text-yellow-400 transition">
+              {formConfig.title}
+            </h3>
+            <div className="min-h-[400px] flex items-center justify-center">
+              {formConfig.component}
+            </div>
+          </motion.div>
+        ))}
       </main>
 
-      {/* Footer informativo */}
-      <footer className="mt-16 text-center text-zinc-500 text-sm">
+      {/* Simulated Credentials */}
+      <section className="mt-16 max-w-md mx-auto bg-zinc-900/30 rounded-xl border border-zinc-700/40 p-4 text-center text-zinc-300 shadow">
+        <h4 className="text-amber-400 font-semibold mb-2">🔐 Credenciales de prueba</h4>
+        <p className="text-sm">Email: <span className="text-white">admin@gmail.com</span></p>
+        <p className="text-sm">Contraseña: <span className="text-white">admin123</span></p>
+        <p className="text-xs text-zinc-500 mt-2 italic">* Solo para demostración visual</p>
+      </section>
+
+      <footer className="mt-12 text-center text-zinc-500 text-sm">
         <p>
-          Bengelsdorff Angeélica | 
-          Creado con ❤️ usando Next.js y Tailwind CSS
+          Bengelsdorff Angélica • Hecho con ❤️ en Next.js + TailwindCSS
         </p>
       </footer>
     </div>
