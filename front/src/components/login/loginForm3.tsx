@@ -38,7 +38,7 @@ export function LoginForm3() {
       })
       setEmail("")
       setPassword("")
-    } catch (err) {
+    } catch {
       toast({
         title: "Credenciales inválidas",
         description: "Verifica tu usuario y contraseña",
@@ -107,9 +107,18 @@ export function LoginForm3() {
 
           <p className="text-center text-sm text-gray-600">
             ¿No tienes cuenta?{" "}
-            <a href="#" className="text-blue-600 hover:underline">
+            <button
+              type="button"
+              className="text-blue-600 hover:underline"
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  const event = new CustomEvent('switchToRegister')
+                  window.dispatchEvent(event)
+                }
+              }}
+            >
               Regístrate
-            </a>
+            </button>
           </p>
         </form>
       </div>

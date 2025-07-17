@@ -6,22 +6,49 @@ import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 import { Checkbox } from "../ui/checkbox"
 import { Separator } from "../ui/separator"
+import { useToast } from "../../hooks/use.toast"
 
 export default function LoginForm9() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const { toast } = useToast()
+
+  const fakeLogin = ({ email, contraseña }: { email: string; contraseña: string }) => {
+    return new Promise<{ token: string }>((resolve, reject) => {
+      setTimeout(() => {
+        if (email === "admin@gmail.com" && contraseña === "admin123") {
+          resolve({ token: "falso-token-simulado" })
+        } else {
+          reject(new Error("Credenciales inválidas"))
+        }
+      }, 400)
+    })
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
     
-    // Simular proceso de login
-    setTimeout(() => {
+    try {
+      await fakeLogin({ email, contraseña: password })
+      toast({
+        title: "Inicio de sesión exitoso",
+        description: "¡Bienvenido!",
+        variant: "default"
+      })
+      setEmail("")
+      setPassword("")
+    } catch (err) {
+      toast({
+        title: "Credenciales inválidas",
+        description: "Verifica tu usuario y contraseña",
+        variant: "destructive"
+      })
+    } finally {
       setIsLoading(false)
-      console.log("Login attempt:", { email, password, rememberMe })
-    }, 2000)
+    }
   }
 
   return (
@@ -168,7 +195,16 @@ export default function LoginForm9() {
           <div className="text-center mt-6">
             <p className="text-gray-300">
               ¿No tienes una cuenta?{" "}
-              <button className="text-purple-300 hover:text-purple-200 font-medium transition-colors duration-200">
+              <button 
+                type="button"
+                className="text-purple-300 hover:text-purple-200 font-medium transition-colors duration-200"
+                onClick={() => {
+                  if (typeof window !== 'undefined') {
+                    const event = new CustomEvent('switchToRegister')
+                    window.dispatchEvent(event)
+                  }
+                }}
+              >
                 Regístrate aquí
               </button>
             </p>

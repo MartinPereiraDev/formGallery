@@ -109,6 +109,23 @@ export default function LoginForm6() {
         <div className="text-right mt-2">
           <a href="#" className="text-sm text-indigo-500 hover:underline">¿Olvidaste tu contraseña?</a>
         </div>
+        <div className="text-center mt-4">
+          <span className="text-sm text-gray-600">
+            ¿No tienes cuenta?{" "}
+            <button
+              type="button"
+              className="text-indigo-500 hover:underline font-medium"
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  const event = new CustomEvent('switchToRegister')
+                  window.dispatchEvent(event)
+                }
+              }}
+            >
+              Regístrate
+            </button>
+          </span>
+        </div>
       </form>
     </div>
   )

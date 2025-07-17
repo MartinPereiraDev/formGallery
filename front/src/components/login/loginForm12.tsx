@@ -6,17 +6,19 @@ import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
 import { User, Lock, Eye, EyeOff } from "lucide-react";
+import { useToast } from "../../hooks/use.toast";
 
 export default function LoginForm12() {
   const [userData, setUserData] = useState({ username: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({ username: "", password: "" });
   const [touched, setTouched] = useState({ username: false, password: false });
+  const { toast } = useToast();
 
   const validate = (data: typeof userData) => {
     const errs: typeof errors = { username: "", password: "" };
-    if (!data.username) errs.username = "Username is required";
-    if (!data.password) errs.password = "Password is required";
+    if (!data.username) errs.username = "El usuario es requerido";
+    if (!data.password) errs.password = "La contraseña es requerida";
     return errs;
   };
 
@@ -39,7 +41,11 @@ export default function LoginForm12() {
     const errs = validate(userData);
     setErrors(errs);
     if (!errs.username && !errs.password) {
-      alert("Login successful!");
+      toast({
+        title: "Inicio de sesión exitoso",
+        description: "¡Bienvenido!",
+        variant: "default"
+      });
       setUserData({ username: "", password: "" });
       setTouched({ username: false, password: false });
       setErrors({ username: "", password: "" });
@@ -66,7 +72,7 @@ export default function LoginForm12() {
           </div>
         </div>
         <h2 className="text-4xl font-bold text-white mb-10 mt-8 tracking-wide text-center drop-shadow-lg" style={{textShadow: "0 2px 8px #b47aff80"}}>
-          Sign In
+          Iniciar Sesión
         </h2>
         <form className="w-full space-y-7" onSubmit={handleSubmit}>
           {/* Username */}
@@ -79,7 +85,7 @@ export default function LoginForm12() {
                 id="username12"
                 name="username"
                 type="text"
-                placeholder="Username"
+                placeholder="Usuario"
                 className="h-12 bg-transparent border-2 border-white/80 rounded-full focus:border-pink-300 focus:ring-pink-200 text-white placeholder:text-white/70 font-semibold shadow-none px-5"
                 value={userData.username}
                 onChange={handleInputChange}
@@ -102,7 +108,7 @@ export default function LoginForm12() {
                 id="password12"
                 name="password"
                 type={showPassword ? "text" : "password"}
-                placeholder="Password"
+                placeholder="Contraseña"
                 className="h-12 bg-transparent border-2 border-white/80 rounded-full focus:border-pink-300 focus:ring-pink-200 text-white placeholder:text-white/70 font-semibold shadow-none px-5 pr-12"
                 value={userData.password}
                 onChange={handleInputChange}
@@ -127,9 +133,9 @@ export default function LoginForm12() {
           <div className="flex items-center justify-between text-white/90 text-sm mt-1">
             <div className="flex items-center gap-2">
               <Checkbox id="remember12" className="border-white/60 bg-white/20" />
-              <Label htmlFor="remember12" className="text-white/90 select-none cursor-pointer">Remember me</Label>
+              <Label htmlFor="remember12" className="text-white/90 select-none cursor-pointer">Recordarme</Label>
             </div>
-            <button type="button" className="hover:underline text-white/80">Forgot password?</button>
+            <button type="button" className="hover:underline text-white/80">¿Olvidaste tu contraseña?</button>
           </div>
           {/* Botón */}
           <Button
@@ -137,11 +143,11 @@ export default function LoginForm12() {
             className="w-full h-12 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-400 hover:from-pink-400 hover:to-blue-500 text-white font-bold shadow-lg mt-2 text-lg tracking-wide border-none"
             style={{ boxShadow: "0 4px 24px 0 rgba(186,104,200,0.25)", letterSpacing: 1.5, fontSize: "1.25rem" }}
           >
-            LOGIN
+            INICIAR SESIÓN
           </Button>
           {/* Links */}
           <div className="text-center mt-2">
-            <span className="text-base text-white/90">Don&apos;t have account?{' '}
+            <span className="text-base text-white/90">¿No tienes cuenta?{' '}
               <button
                 type="button"
                 className="text-pink-200 font-bold hover:underline"
@@ -152,7 +158,7 @@ export default function LoginForm12() {
                   }
                 }}
               >
-                Sign up!
+                ¡Regístrate!
               </button>
             </span>
           </div>

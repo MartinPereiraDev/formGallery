@@ -115,6 +115,23 @@ export default function LoginForm8() {
         <div className="text-right mt-2">
           <a href="#" className="text-sm text-zinc-400 hover:text-amber-400 hover:underline transition">¿Olvidaste tu contraseña?</a>
         </div>
+        <div className="text-center mt-4">
+          <span className="text-sm text-zinc-400">
+            ¿No tienes cuenta?{" "}
+            <button
+              type="button"
+              className="text-amber-400 hover:text-amber-300 font-medium hover:underline transition"
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  const event = new CustomEvent('switchToRegister')
+                  window.dispatchEvent(event)
+                }
+              }}
+            >
+              Solicitar acceso
+            </button>
+          </span>
+        </div>
       </form>
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs text-zinc-600 font-mono tracking-widest select-none">© 2024 Black Label Access</div>
     </div>

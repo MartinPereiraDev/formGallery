@@ -42,7 +42,7 @@ export default function RegisterForm3() {
       setName("")
       setEmail("")
       setPassword("")
-    } catch (err) {
+    } catch {
       toast({
         title: "Datos inválidos",
         description: "Verifica los datos ingresados",

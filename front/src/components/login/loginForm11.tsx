@@ -5,6 +5,7 @@ import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import Image from "next/image"
 import { Eye, EyeOff } from "lucide-react"
+import { useToast } from "../../hooks/use.toast"
 
 const gifs = {
   aburrido: "/gatito-aburrido.gif",
@@ -17,6 +18,7 @@ export default function LoginForm11() {
   const [errors, setErrors] = useState({ username: "", password: "" })
   const [touched, setTouched] = useState({ username: false, password: false })
   const [showPassword, setShowPassword] = useState(false)
+  const { toast } = useToast()
 
   let estado: keyof typeof gifs = "aburrido"
   if (userData.username) estado = "apurado"
@@ -48,7 +50,11 @@ export default function LoginForm11() {
     const errs = validate(userData)
     setErrors(errs)
     if (!errs.username && !errs.password) {
-      alert("¡Inicio de sesión exitoso!")
+      toast({
+        title: "Inicio de sesión exitoso",
+        description: "¡Bienvenido!",
+        variant: "default"
+      })
       setUserData({ username: "", password: "" })
       setTouched({ username: false, password: false })
       setErrors({ username: "", password: "" })
@@ -57,7 +63,7 @@ export default function LoginForm11() {
 
   return (
     <div className="w-full max-w-md mx-auto bg-white rounded-3xl shadow-xl p-8 border-4 border-black flex flex-col items-center relative font-mono">
-      <div className={`w-32 h-32 mb-6 rounded-full overflow-hidden border-2 border-black bg-gray-100 flex items-center justify-center shadow-[0_4px_24px_0_rgba(0,0,0,0.10)] shadow-inner`} style={{boxShadow: 'inset 0 4px 16px 0 #bbb, 0 4px 24px 0 #bbb'}}>
+      <div className={`w-32 h-32 mb-6 rounded-full overflow-hidden border-2 border-black bg-gray-100 flex items-center justify-center`} style={{boxShadow: 'inset 0 4px 16px 0 #bbb, 0 4px 24px 0 #bbb'}}>
         <Image src={gifs[estado]} alt="Gatito animado" width={112} height={112} className="object-cover" />
       </div>
       <h2 className="text-3xl font-bold text-black mb-4 tracking-wide text-center font-mono" style={{letterSpacing: 1}}>

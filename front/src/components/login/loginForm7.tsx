@@ -111,6 +111,23 @@ export default function LoginForm7() {
           >
             ¡Entrar y sonreír!
           </Button>
+          <div className="text-center mt-4">
+            <span className="text-sm text-pink-600">
+              ¿No tienes cuenta?{" "}
+              <button
+                type="button"
+                className="text-cyan-600 hover:underline font-bold"
+                onClick={() => {
+                  if (typeof window !== 'undefined') {
+                    const event = new CustomEvent('switchToRegister')
+                    window.dispatchEvent(event)
+                  }
+                }}
+              >
+                ¡Regístrate aquí!
+              </button>
+            </span>
+          </div>
         </form>
       </div>
       {/* Animaciones personalizadas Tailwind */}

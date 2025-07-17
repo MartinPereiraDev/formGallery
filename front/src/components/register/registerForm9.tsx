@@ -213,7 +213,16 @@ export default function RegisterForm9() {
           <div className="text-center mt-6">
             <p className="text-gray-300">
               ¿Ya tienes una cuenta?{" "}
-              <button className="text-green-300 hover:text-green-200 font-medium transition-colors duration-200">
+              <button 
+                type="button"
+                className="text-green-300 hover:text-green-200 font-medium transition-colors duration-200"
+                onClick={() => {
+                  if (typeof window !== 'undefined') {
+                    const event = new CustomEvent('switchToLogin')
+                    window.dispatchEvent(event)
+                  }
+                }}
+              >
                 Inicia sesión aquí
               </button>
             </p>

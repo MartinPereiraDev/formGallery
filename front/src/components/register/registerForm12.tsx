@@ -6,6 +6,7 @@ import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
 import { User, Lock, Eye, EyeOff } from "lucide-react";
+import { useToast } from "../../hooks/use.toast";
 
 export default function RegisterForm12() {
   const [userData, setUserData] = useState({ username: "", password: "", confirm: "" });
@@ -13,13 +14,14 @@ export default function RegisterForm12() {
   const [showConfirm, setShowConfirm] = useState(false);
   const [errors, setErrors] = useState({ username: "", password: "", confirm: "" });
   const [touched, setTouched] = useState({ username: false, password: false, confirm: false });
+  const { toast } = useToast();
 
   const validate = (data: typeof userData) => {
     const errs: typeof errors = { username: "", password: "", confirm: "" };
-    if (!data.username) errs.username = "Username is required";
-    if (!data.password) errs.password = "Password is required";
-    if (!data.confirm) errs.confirm = "Please confirm your password";
-    if (data.password && data.confirm && data.password !== data.confirm) errs.confirm = "Passwords do not match";
+    if (!data.username) errs.username = "El usuario es requerido";
+    if (!data.password) errs.password = "La contraseña es requerida";
+    if (!data.confirm) errs.confirm = "Por favor confirma tu contraseña";
+    if (data.password && data.confirm && data.password !== data.confirm) errs.confirm = "Las contraseñas no coinciden";
     return errs;
   };
 
@@ -42,7 +44,11 @@ export default function RegisterForm12() {
     const errs = validate(userData);
     setErrors(errs);
     if (!errs.username && !errs.password && !errs.confirm) {
-      alert("Registration successful!");
+      toast({
+        title: "Registro exitoso",
+        description: "¡Cuenta creada correctamente!",
+        variant: "default"
+      });
       setUserData({ username: "", password: "", confirm: "" });
       setTouched({ username: false, password: false, confirm: false });
       setErrors({ username: "", password: "", confirm: "" });
@@ -69,7 +75,7 @@ export default function RegisterForm12() {
           </div>
         </div>
         <h2 className="text-4xl font-bold text-white mb-10 mt-8 tracking-wide text-center drop-shadow-lg" style={{textShadow: "0 2px 8px #b47aff80"}}>
-          Sign Up
+          Registrarse
         </h2>
         <form className="w-full space-y-7" onSubmit={handleSubmit}>
           {/* Username */}
@@ -82,7 +88,7 @@ export default function RegisterForm12() {
                 id="username12r"
                 name="username"
                 type="text"
-                placeholder="Username"
+                placeholder="Usuario"
                 className="h-12 bg-transparent border-2 border-white/80 rounded-full focus:border-pink-300 focus:ring-pink-200 text-white placeholder:text-white/70 font-semibold shadow-none px-5"
                 value={userData.username}
                 onChange={handleInputChange}
@@ -105,7 +111,7 @@ export default function RegisterForm12() {
                 id="password12r"
                 name="password"
                 type={showPassword ? "text" : "password"}
-                placeholder="Password"
+                placeholder="Contraseña"
                 className="h-12 bg-transparent border-2 border-white/80 rounded-full focus:border-pink-300 focus:ring-pink-200 text-white placeholder:text-white/70 font-semibold shadow-none px-5 pr-12"
                 value={userData.password}
                 onChange={handleInputChange}
@@ -136,7 +142,7 @@ export default function RegisterForm12() {
                 id="confirm12r"
                 name="confirm"
                 type={showConfirm ? "text" : "password"}
-                placeholder="Confirm Password"
+                placeholder="Confirmar Contraseña"
                 className="h-12 bg-transparent border-2 border-white/80 rounded-full focus:border-pink-300 focus:ring-pink-200 text-white placeholder:text-white/70 font-semibold shadow-none px-5 pr-12"
                 value={userData.confirm}
                 onChange={handleInputChange}
@@ -161,7 +167,7 @@ export default function RegisterForm12() {
           <div className="flex items-center justify-between text-white/90 text-sm mt-1">
             <div className="flex items-center gap-2">
               <Checkbox id="terms12" className="border-white/60 bg-white/20" />
-              <Label htmlFor="terms12" className="text-white/90 select-none cursor-pointer">Accept terms</Label>
+              <Label htmlFor="terms12" className="text-white/90 select-none cursor-pointer">Aceptar términos</Label>
             </div>
           </div>
           {/* Botón */}
@@ -170,11 +176,11 @@ export default function RegisterForm12() {
             className="w-full h-12 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-400 hover:from-pink-400 hover:to-blue-500 text-white font-bold shadow-lg mt-2 text-lg tracking-wide border-none"
             style={{ boxShadow: "0 4px 24px 0 rgba(186,104,200,0.25)", letterSpacing: 1.5, fontSize: "1.25rem" }}
           >
-            SIGN UP
+            REGISTRARSE
           </Button>
           {/* Links */}
           <div className="text-center mt-2">
-            <span className="text-base text-white/90">Already have an account?{' '}
+            <span className="text-base text-white/90">¿Ya tienes una cuenta?{' '}
               <button
                 type="button"
                 className="text-pink-200 font-bold hover:underline"
@@ -185,7 +191,7 @@ export default function RegisterForm12() {
                   }
                 }}
               >
-                Sign in!
+                ¡Inicia sesión!
               </button>
             </span>
           </div>
