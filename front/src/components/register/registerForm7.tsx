@@ -65,7 +65,7 @@ export default function RegisterForm7() {
         </div>
         <h2 className="text-2xl font-extrabold text-pink-500 text-center mb-2 tracking-tight animate-fade-in">¡Registrate!</h2>
         <p className="text-center text-cyan-600 mb-6 animate-fade-in delay-100">Crea tu cuenta y disfruta de nuestros servicios</p>
-        <form className="space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-5" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="name7" className="block text-sm font-bold text-pink-500 mb-1">Nombre</label>
             <div className="relative">

@@ -1,122 +1,132 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "../ui/button"
 import { Input } from "../ui/input"
+import { Button } from "../ui/button"
 import Image from "next/image"
+import { Eye, EyeOff } from "lucide-react"
 import { useToast } from "../../hooks/use.toast"
-import { Label } from "../ui/label"
+
+const gifs = {
+  aburrido: "/gatito-aburrido.gif",
+  apurado: "/gatito-apurado.gif",
+  copiando: "/gatito-copiando.gif"
+}
 
 export default function LoginForm1() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState("")
+  const [userData, setUserData] = useState({ username: "", password: "" })
+  const [errors, setErrors] = useState({ username: "", password: "" })
+  const [touched, setTouched] = useState({ username: false, password: false })
+  const [showPassword, setShowPassword] = useState(false)
   const { toast } = useToast()
 
-  const fakeLogin = ({ email, contraseña }: { email: string; contraseña: string }) => {
-    return new Promise<{ token: string }>((resolve, reject) => {
-      setTimeout(() => {
-        if (email === "admin@gmail.com" && contraseña === "admin123") {
-          resolve({ token: "falso-token-simulado" })
-        } else {
-          reject(new Error("Credenciales inválidas"))
-        }
-      }, 400)
-    })
+  let estado: keyof typeof gifs = "aburrido"
+  if (userData.username) estado = "apurado"
+  if (userData.password) estado = "copiando"
+
+  const validate = (data: typeof userData) => {
+    const errs: typeof errors = { username: "", password: "" }
+    if (!data.username) errs.username = "El usuario es requerido"
+    if (!data.password) errs.password = "La contraseña es requerida"
+    return errs
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    const newData = { ...userData, [name]: value }
+    setUserData(newData)
+    setErrors(validate(newData))
+  }
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { name } = e.target
+    setTouched({ ...touched, [name]: true })
+    setErrors(validate(userData))
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setError("")
-
-    if (!email || !password) {
-      setError("Por favor ingrese usuario y contraseña")
-      return
-    }
-
-    setIsLoading(true)
-
-    try {
-      const response = await fakeLogin({ email, contraseña: password })
-      localStorage.setItem("token", response.token)
+    setTouched({ username: true, password: true })
+    const errs = validate(userData)
+    setErrors(errs)
+    if (!errs.username && !errs.password) {
       toast({
         title: "Inicio de sesión exitoso",
         description: "¡Bienvenido!",
         variant: "default"
       })
-      setEmail("")
-      setPassword("")
-    } catch (err) {
-      if (err instanceof Error) {
-        // Mostrar error de credenciales como toast destructivo
-        toast({
-          title: "Credenciales inválidas",
-          description: "Verifica tu usuario y contraseña",
-          variant: "destructive"
-        })
-      } else {
-        toast({
-          title: "Ocurrió un error inesperado",
-          variant: "destructive"
-        })
-      }
-    } finally {
-      setIsLoading(false)
+      setUserData({ username: "", password: "" })
+      setTouched({ username: false, password: false })
+      setErrors({ username: "", password: "" })
     }
   }
-  
+
   return (
-      <div className="w-full max-w-3xl rounded-lg shadow-xl overflow-hidden relative backdrop-blur-lg">
-        <div className="grid grid-cols-2 relative min-h-[450px] border border-gray-700 rounded-lg overflow-hidden">
-          <div className="p-8 md:p-8">
-            <h2 className="text-2xl font-semibold text-gray-200 mb-8 md:mb-1">¡Hola!</h2>
-            <p className="text-lg text-gray-300 mb-8 hidden md:block">
-              Bienvenido al sistema de gestión. Por favor iniciá sesión para comenzar.
-            </p>
-
-            {/* Error de campos vacíos */}
-            {error && (
-              <div className="text-red-500 text-sm mb-2">{error}</div>
-            )}
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <Label htmlFor="username" className="text-sm text-gray-300 font-medium">Email</Label>
+    <div
+      className="w-full max-w-md mx-auto bg-gray-50 rounded-3xl p-4 flex flex-col items-center relative font-mono shadow-[inset_6px_6px_12px_rgba(0,0,0,0.2),inset_-6px_-6px_12px_rgba(255,255,255,0.9)]"
+    >
+      <div className={`w-32 h-32 mb-6 rounded-full overflow-hidden border-2 border-black bg-gray-100 flex items-center justify-center`} style={{boxShadow: 'inset 0 4px 16px 0 #bbb, 0 4px 24px 0 #bbb'}}>
+        <Image src={gifs[estado]} alt="Gatito animado" width={112} height={112} className="object-cover" />
+      </div>
+      <h2 className="text-3xl font-bold text-black mb-4 tracking-wide text-center font-mono" style={{letterSpacing: 1}}>
+        Iniciar sesión
+      </h2>
+        <form className="w-full space-y-4" onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="username11" className="block text-base font-bold text-black mb-1 font-mono">Usuario</label>
+            <Input
+              id="username11"
+              name="username"
+              type="text"
+              placeholder="Tu usuario"
+              className="h-12 bg-gray-50 rounded-xl text-black font-mono text-lg px-4 shadow-[inset_3px_3px_6px_rgba(0,0,0,0.2),inset_-3px_-3px_6px_rgba(255,255,255,0.9)] focus:shadow-[inset_4px_4px_8px_rgba(0,0,0,0.3),inset_-4px_-4px_8px_rgba(255,255,255,0.95)] focus:outline-none transition-all duration-200"
+              value={userData.username}
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              autoComplete="username"
+            />
+            {touched.username && errors.username && <p className="text-black text-xs mt-1 font-mono">{errors.username}</p>}
+          </div>
+          <div>
+            <label htmlFor="password11" className="block text-base font-bold text-black mb-1 font-mono">Contraseña</label>
+            <div className="relative">
               <Input
-                id="username"
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-gray-100 border-gray-300 text-gray-900"
-                placeholder="admin@gmail.com"
+                id="password11"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Tu contraseña"
+                className="h-12 bg-gray-50 rounded-xl pr-12 text-black font-mono text-lg px-4 shadow-[inset_3px_3px_6px_rgba(0,0,0,0.2),inset_-3px_-3px_6px_rgba(255,255,255,0.9)] focus:shadow-[inset_4px_4px_8px_rgba(0,0,0,0.3),inset_-4px_-4px_8px_rgba(255,255,255,0.95)] focus:outline-none transition-all duration-200"
+                value={userData.password}
+                onChange={handleInputChange}
+                onBlur={handleBlur}
+                autoComplete="current-password"
               />
-              <Label htmlFor="password" className="text-sm text-gray-300 font-medium">Contraseña</Label>
-              <div className="relative">
-                <Input
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="bg-gray-100 border-gray-300 text-gray-900 pr-10"
-                  placeholder="**********"
-                />
-                <button
-                  type="button"
-                  className="absolute right-3 top-2.5 text-gray-400 hover:text-white"
-                >
-                </button>
-              </div>
-              <Button
-                type="submit"
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-full"
-                disabled={isLoading}
-              >
-                {isLoading ? "LOGGING IN..." : "LOGIN"}
-              </Button>
-            </form>
-            <div className="mt-6 text-center">
               <button
                 type="button"
-                className="text-sm text-purple-400 hover:text-purple-300 font-medium"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-black hover:text-gray-700"
+                onClick={() => setShowPassword(v => !v)}
+                tabIndex={-1}
+              >
+                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+              </button>
+            </div>
+            {touched.password && errors.password && <p className="text-black text-xs mt-1 font-mono">{errors.password}</p>}
+          </div>
+          <div className="flex items-center gap-2 mt-2">
+            <input type="checkbox" id="remember11" className="w-5 h-5 accent-black border-2 border-black rounded" />
+            <label htmlFor="remember11" className="text-base font-mono text-black font-bold select-none">Recuérdame siempre</label>
+          </div>
+          <Button
+            type="submit"
+            className="w-full h-12 rounded-xl bg-gray-100 text-black font-bold mt-2 text-lg font-mono tracking-wide shadow-[inset_3px_3px_6px_rgba(0,0,0,0.2),inset_-3px_-3px_6px_rgba(255,255,255,0.9)] hover:bg-gray-200 hover:shadow-lg active:shadow-[inset_6px_6px_12px_rgba(0,0,0,0.3),inset_-6px_-6px_12px_rgba(255,255,255,0.7)] transition-all duration-500 ease-in-out"
+          >
+            Entrar
+          </Button>
+          <div className="text-center mt-4">
+            <span className="text-base text-black font-mono">¿No tienes cuenta?{' '}
+              <button
+                type="button"
+                className="text-black font-bold hover:underline"
                 onClick={() => {
                   if (typeof window !== 'undefined') {
                     const event = new CustomEvent('switchToRegister')
@@ -124,22 +134,11 @@ export default function LoginForm1() {
                   }
                 }}
               >
-                ¿No tienes una cuenta? Regístrate
+                Regístrate
               </button>
-            </div>
+            </span>
           </div>
-
-          {/* Imagen de fondo */}
-          <div className="h-full w-full overflow-hidden object-cover transform -skew-x-12 translate-x-15 rounded-lg">
-            <Image
-              src="/login.jpg"
-              alt="Ilustración de bienvenida"
-              fill
-              className="object-cover rounded-lg"
-              priority
-            />
-          </div>
-        </div>
-      </div>
+        </form>
+    </div>
   )
 }

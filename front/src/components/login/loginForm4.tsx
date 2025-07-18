@@ -5,7 +5,7 @@ import { Checkbox } from "src/components/ui/checkbox"
 import { useState } from "react"
 import { useToast } from "../../hooks/use.toast"
 
-export function LoginForm4() {
+export default function LoginForm4() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")

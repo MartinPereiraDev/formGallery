@@ -52,7 +52,7 @@ export default function RegisterForm6() {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto bg-gradient-to-br from-indigo-50 via-white to-purple-100 rounded-3xl shadow-2xl p-8 border border-indigo-100">
+    <div className="w-full max-w-md mx-auto bg-gradient-to-br from-indigo-50 via-white to-purple-100 rounded-3xl shadow-2xl p-6 border border-indigo-100">
       <div className="text-center mb-8">
         <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center mb-4 shadow-lg">
           <User className="w-8 h-8 text-white" />
@@ -60,7 +60,7 @@ export default function RegisterForm6() {
         <h2 className="text-3xl font-bold text-indigo-700 mb-1">Crear cuenta</h2>
         <p className="text-gray-500">Regístrate para tu panel profesional</p>
       </div>
-      <form className="space-y-6" onSubmit={handleSubmit}>
+      <form className="space-y-4" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name6" className="block text-sm font-medium text-indigo-700 mb-1">Nombre</label>
           <div className="relative">

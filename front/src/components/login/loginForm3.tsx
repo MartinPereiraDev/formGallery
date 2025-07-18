@@ -5,7 +5,7 @@ import { Checkbox } from "@radix-ui/react-checkbox"
 import { useState } from "react"
 import { useToast } from "../../hooks/use.toast"
 
-export function LoginForm3() {
+export default function LoginForm3() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
