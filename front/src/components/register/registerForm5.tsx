@@ -65,7 +65,7 @@ export default function RegisterForm5() {
           <p className="text-gray-600 text-sm">Crea tu cuenta para comenzar</p>
         </div>
 
-        <form className="space-y-4" onSubmit={handleSubmit}>
+        <form className="space-y-2" onSubmit={handleSubmit}>
           <div>
             <Label htmlFor="name5" className="text-gray-700 font-medium">
               Tu Nombre

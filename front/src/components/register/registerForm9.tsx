@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
-import { Checkbox } from "../ui/checkbox"
+//import { Checkbox } from "../ui/checkbox"
 import { useToast } from "../../hooks/use.toast"
 
 export default function RegisterForm9() {
@@ -53,7 +53,7 @@ export default function RegisterForm9() {
   return (
     <div className="w-full max-w-md">
       {/* Tarjeta principal */}
-      <div className="bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 rounded-3xl shadow-2xl border border-white/20 p-8 relative overflow-hidden">
+      <div className="bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 rounded-3xl shadow-2xl border border-white/20 p-4 relative overflow-hidden">
         
         {/* Contenido del formulario */}
         <div className="relative z-10">
@@ -69,7 +69,7 @@ export default function RegisterForm9() {
           </div>
 
           {/* Formulario */}
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-2">
             {/* Nombres */}
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
@@ -187,7 +187,7 @@ export default function RegisterForm9() {
             </div>
 
             {/* Opciones adicionales */}
-            <div className="space-y-4">
+            {/*<div className="space-y-4">
               <div className="flex items-center space-x-2">
                 <Checkbox
                   id="acceptTerms"
@@ -201,10 +201,8 @@ export default function RegisterForm9() {
                     términos y condiciones
                   </button>
                 </Label>
-              </div>
-              
-             
-            </div>
+              </div>        
+            </div>*/}
 
             {/* Botón de envío */}
             <Button

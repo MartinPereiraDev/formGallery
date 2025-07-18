@@ -3,9 +3,9 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from "react"
 import LoginForm1 from "../login/loginForm1"
 import LoginForm2 from "../login/loginForm2"
-import { LoginForm3 } from "../login/loginForm3"
-import { LoginForm4 } from "../login/loginForm4"
-import { LoginForm5 } from "../login/loginForm5"
+import LoginForm3 from "../login/loginForm3"
+import LoginForm4 from "../login/loginForm4"
+import LoginForm5 from "../login/loginForm5"
 import LoginForm6 from "../login/loginForm6"
 import LoginForm7 from "../login/loginForm7"
 import LoginForm8 from "../login/loginForm8"
@@ -134,25 +134,25 @@ export default function GalleryView() {
 
   return (
     <div>
-      <header className="text-center mb-10">
-        <h1 className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-pink-500 to-indigo-500 drop-shadow-xl">
+      <header className="text-center mb-6">
+        <h1 className="mt-2 text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-pink-500 to-indigo-500 drop-shadow-xl">
           Galería de Formularios
         </h1>
-        <p className="text-zinc-400 mt-4 max-w-xl mx-auto">
+        <p className="text-zinc-200 mt-4 max-w-xl mx-auto">
           Explora diseños modernos y reutilizables para login y registro con React + Tailwind.
         </p>
       </header>
 
       {/* Tabs */}
-      <div className="flex justify-center mb-12">
+      <div className="flex justify-center mb-16">
         <div className="bg-zinc-800/40 border border-zinc-700/60 rounded-full flex p-1 gap-1">
           {(["login", "register"] as const).map((tab) => (
             <button
               key={tab}
-              className={`px-6 py-2 text-sm md:text-base font-medium rounded-full transition-all ${
+              className={`px-6 py-1.5 text-sm md:text-base font-medium rounded-full transition-all ${
                 activeTab === tab
-                  ? "bg-gradient-to-r from-yellow-400 to-orange-500 text-black shadow-md"
-                  : "text-zinc-400 hover:text-yellow-300"
+                  ? "bg-gradient-to-r from-indigo-400 via-blue-500 to-indigo-500 text-white shadow-md"
+                  : "text-zinc-400 hover:text-blue-300"
               }`}
               onClick={() => handleTabChange(tab)}
             >
@@ -163,114 +163,119 @@ export default function GalleryView() {
       </div>
 
       {/* Carrusel tipo Aceternity UI */}
-      <div
-        className="relative flex justify-center items-center h-[500px] md:h-[600px] w-full overflow-x-visible select-none"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        {currentForms.map((formConfig, index) => {
-          // Posición relativa al slide actual
-          const offset = index - current
-          let style: React.CSSProperties = {}
-          let zIndex = 0
-          let visible = false
-
-          if (offset === 0) {
-            // Slide central
-            style = {
-              transform: "translateX(0) scale(1) rotateY(0deg)",
-              opacity: 1,
-              zIndex: 30,              
-              marginTop: 0,
-            }
-            zIndex = 30
-            visible = true
-          } else if (offset === -1 || (current === 0 && index === total - 1)) {
-            // Slide anterior (izquierda)
-            style = {
-              transform: "translateX(-60%) scale(0.85) rotateY(25deg)",
-              opacity: 0.5,
-              zIndex: 20,
-              filter: "blur(1px)",
-              marginTop: "60px",
-            }
-            zIndex = 20
-            visible = true
-          } else if (offset === 1 || (current === total - 1 && index === 0)) {
-            // Slide siguiente (derecha)
-            style = {
-              transform: "translateX(60%) scale(0.85) rotateY(-25deg)",
-              opacity: 0.5,
-              zIndex: 20,
-              filter: "blur(1px)",
-              marginTop: "60px",
-            }
-            zIndex = 20
-            visible = true
-          } else {
-            // Ocultar los demás
-            style = {
-              opacity: 0,
-              pointerEvents: "none",
-              zIndex: 0,
-            }
-            zIndex = 0
-            visible = false
-          }
-
-          return (
-            <div
-              key={index}
-              style={{
-                position: "absolute",
-                left: "50%",
-                top: "50%",
-                width: "min(95vw, 420px)",
-                minWidth: "350px",
-                maxWidth: "420px",
-                height: "min(90vw, 520px)",
-                minHeight: "400px",
-                maxHeight: "520px",
-                transform: `translate(-50%, -50%) ${style.transform || ''}`,
-                opacity: style.opacity,
-                zIndex: zIndex,
-                boxShadow: style.boxShadow,
-                filter: style.filter,
-                transition: "all 0.6s cubic-bezier(0.4,0,0.2,1)",
-                pointerEvents: visible ? "auto" : "none",
-              }}
-            >
-              
-              <div className="w-full h-full flex items-center justify-center">
-                {formConfig.component}
-              </div>
-            </div>
-          )
-        })}
-        {/* Controles de navegación */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-4 z-40">
+      <div className="flex justify-center w-full">
+        <div
+          className="relative flex flex-row items-center justify-between max-w-[500px] w-full h-[500px] md:h-[600px] overflow-x-visible select-none"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {/* Botón anterior */}
           <button
             onClick={handlePrev}
-            className="w-10 h-10 flex items-center justify-center bg-zinc-800 text-white rounded-full hover:bg-yellow-400 hover:text-black transition border-2 border-transparent focus:border-yellow-400"
+            className="w-10 h-10 flex items-center justify-center bg-zinc-800 text-white rounded-full hover:bg-yellow-400 hover:text-black transition border-2 border-transparent focus:border-yellow-400 z-50"
             aria-label="Anterior"
+            style={{ position: 'relative' }}
           >
             &#8592;
           </button>
+          {/* Carrusel con tarjetas */}
+          <div className="relative flex-1 flex justify-center items-center h-full">
+            {currentForms.map((formConfig, index) => {
+              const offset = index - current
+              let style: React.CSSProperties = {}
+              let zIndex = 0
+              let visible = false
+              if (offset === 0) {
+                style = {
+                  transform: "translateX(0) scale(1) rotateY(0deg)",
+                  opacity: 1,
+                  zIndex: 30,
+                  marginTop: 0,
+                }
+                zIndex = 30
+                visible = true
+              } else if (offset === -1 || (current === 0 && index === total - 1)) {
+                style = {
+                  transform: "translateX(-60%) scale(0.85) rotateY(25deg)",
+                  opacity: 0.5,
+                  zIndex: 20,
+                  filter: "blur(1px)",
+                  marginTop: "60px",
+                }
+                zIndex = 20
+                visible = true
+              } else if (offset === 1 || (current === total - 1 && index === 0)) {
+                style = {
+                  transform: "translateX(60%) scale(0.85) rotateY(-25deg)",
+                  opacity: 0.5,
+                  zIndex: 20,
+                  filter: "blur(1px)",
+                  marginTop: "60px",
+                }
+                zIndex = 20
+                visible = true
+              } else {
+                style = {
+                  opacity: 0,
+                  pointerEvents: "none",
+                  zIndex: 0,
+                }
+                zIndex = 0
+                visible = false
+              }
+              return (
+                <div
+                  key={index}
+                  style={{
+                    position: "absolute",
+                    left: "50%",
+                    top: "50%",
+                    width: "min(95vw, 420px)",
+                    minWidth: "350px",
+                    maxWidth: "420px",
+                    height: "min(90vw, 520px)",
+                    minHeight: "400px",
+                    maxHeight: "520px",
+                    transform: `translate(-50%, -50%) ${style.transform || ''}`,
+                    opacity: style.opacity,
+                    zIndex: zIndex,
+                    boxShadow: style.boxShadow,
+                    filter: style.filter,
+                    transition: "all 0.6s cubic-bezier(0.4,0,0.2,1)",
+                    pointerEvents: visible ? "auto" : "none",
+                  }}
+                >
+                  <div className="w-full h-full flex items-center justify-center">
+                    {formConfig.component}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+          {/* Botón siguiente */}
           <button
             onClick={handleNext}
-            className="w-10 h-10 flex items-center justify-center bg-zinc-800 text-white rounded-full hover:bg-yellow-400 hover:text-black transition border-2 border-yellow-400"
+            className="w-10 h-10 flex items-center justify-center bg-zinc-800 text-white rounded-full hover:bg-yellow-400 hover:text-black transition border-2 border-yellow-400 z-50"
             aria-label="Siguiente"
+            style={{ position: 'relative' }}
           >
             &#8594;
           </button>
         </div>
       </div>
 
-      <footer className="mt-12 text-center text-zinc-500 text-sm">
-        <p>
-          Bengelsdorff Angélica • Hecho con ❤️ en Next.js + TailwindCSS
-        </p>
+      <footer className="mt-12 mb-4 text-center text-zinc-500 text-sm">
+        <div className="flex flex-col items-center">
+          <div className="flex items-center justify-center mb-2">
+            <hr className="w-40 border-zinc-300" />
+            <span className="mx-2 text-red-500 text-lg" aria-label="corazón" role="img">❤️</span>
+            <hr className="w-40 border-zinc-300" />
+          </div>
+          <p>
+            Bengelsdorff Angélica • Hecho con Next.js + TailwindCSS
+          </p>
+        </div>
       </footer>
     </div>
   )

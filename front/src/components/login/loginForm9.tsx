@@ -54,7 +54,7 @@ export default function LoginForm9() {
   return (
     <div className="w-full max-w-md">
       {/* Tarjeta principal */}
-      <div className="bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 rounded-3xl shadow-2xl border border-white/20 p-8 relative overflow-hidden">
+      <div className="bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 rounded-3xl shadow-2xl border border-white/20 p-4 relative overflow-hidden">
      
         
         {/* Contenido del formulario */}
@@ -71,7 +71,7 @@ export default function LoginForm9() {
           </div>
 
           {/* Formulario */}
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-2">
             {/* Campo Email */}
             <div className="space-y-2">
               <Label htmlFor="email" className="text-white font-medium">
