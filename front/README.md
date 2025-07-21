@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📸 FormGallery
 
-## Getting Started
+Una galería interactiva de formularios de **Login** y **Registro**, desarrollada con **React**, **TypeScript** y **TailwindCSS**. Ideal para inspiración visual, pruebas de estilos y selección rápida de componentes reutilizables.
 
-First, run the development server:
+![demo](/demo.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🚀 Características
+
+- 💡 Alternancia instantánea entre formularios de **Login** y **Registro**
+- 🎨 12 estilos únicos para cada tipo de formulario
+- ⚡ Animaciones fluidas con `framer-motion`
+- 📱 Diseño completamente responsive
+- 🧩 Componentes desacoplados y reutilizables
+- 🖱️ Interacción tipo polaroid `draggable` (inspirado en Aceternity UI)
+- 🛠️ Fácil integración de nuevos estilos o componentes
+
+---
+
+## 🛠️ Tecnologías utilizadas
+
+- [Next.js](https://nextjs.org/) — Framework React para aplicaciones web modernas
+- [TypeScript](https://www.typescriptlang.org/) — Tipado estático para JavaScript
+- [Tailwind CSS](https://tailwindcss.com/) — Utilidades CSS para un diseño rápido y personalizable
+- [Framer Motion](https://www.framer.com/motion/) — Animaciones declarativas para React
+- [shadcn/ui](https://ui.shadcn.dev/) — Componentes UI accesibles y personalizables
+
+---
+
+## ✨ Demo
+
+¿Quieres ver la galería en acción? [¡Haz clic aquí para ver la demo!](https://formgallery.vercel.app/)
+
+---
+
+## 📦 Instalación local
+
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/ABengelsdorff/formgallery.git
+   cd formgallery
+   ```
+2. Instala las dependencias:
+   ```bash
+   npm install
+   ```
+3. Inicia el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
+4. Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
+
+---
+
+## 📁 Estructura del proyecto
+
+```
+front/
+  ├── src/
+  │   ├── app/                # Páginas principales y layout global
+  │   ├── components/         # Componentes reutilizables
+  │   │   ├── login/          # Formularios de Login (12 estilos)
+  │   │   ├── register/       # Formularios de Registro (12 estilos)
+  │   │   └── ui/             # Componentes UI (botón, input, etc.)
+  │   └── hooks/              # Custom hooks
+  └── public/                 # Recursos estáticos (imágenes, SVGs)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🤝 Contribuciones
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+¡Las contribuciones son bienvenidas! Si tienes ideas para nuevos estilos de formularios, mejoras o encuentras algún bug, no dudes en abrir un issue o un pull request.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📄 Licencia
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Este proyecto está bajo la licencia MIT.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## ✨ Créditos
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Hecho con ❤️ por Angélica Bengelsdorff
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
