@@ -58,9 +58,9 @@ export default function RegisterForm7() {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className={`relative bg-gradient-to-br from-pink-200 via-yellow-100 to-cyan-200 rounded-3xl shadow-xl p-8 border-2 border-pink-300 overflow-hidden transition-all duration-500 ${shake ? 'animate-shake' : ''}`}>
+      <div className={`relative bg-gradient-to-br from-pink-200 via-yellow-100 to-cyan-200 rounded-3xl shadow-xl p-6 border-2 border-pink-300 overflow-hidden transition-all duration-500 ${shake ? 'animate-shake' : ''}`}>
         {/* Icono animado */}
-        <div className="flex justify-center mb-6">
+        <div className="flex justify-center">
           <Smile className="w-16 h-16 text-pink-400 animate-bounce drop-shadow-lg" />
         </div>
         <h2 className="text-2xl font-extrabold text-pink-500 text-center mb-2 tracking-tight animate-fade-in">¡Registrate!</h2>

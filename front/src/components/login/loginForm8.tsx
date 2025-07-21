@@ -50,13 +50,13 @@ export default function LoginForm8() {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto bg-gradient-to-br from-black via-zinc-900 to-neutral-800 rounded-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.8)] p-10 border border-zinc-800 relative overflow-hidden">
+    <div className="w-full max-w-md mx-auto bg-gradient-to-br from-black via-zinc-900 to-neutral-800 rounded-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.8)] p-6 border border-zinc-800 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-10 -left-10 w-40 h-40 bg-gradient-to-br from-fuchsia-600/20 to-indigo-500/10 rounded-full blur-2xl" />
         <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-gradient-to-tr from-amber-400/10 to-fuchsia-600/20 rounded-full blur-2xl" />
       </div>
-      <div className="relative z-10 text-center mb-10">
-        <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center mb-4 shadow-lg border border-zinc-700">
+      <div className="relative z-10 text-center mb-4">
+        <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center mb-3 shadow-lg border border-zinc-700">
           <Lock className="w-8 h-8 text-amber-400" />
         </div>
         <h2 className="text-4xl font-extrabold text-white tracking-tight mb-2 font-serif">Acceso Exclusivo</h2>
@@ -112,7 +112,7 @@ export default function LoginForm8() {
         >
           Entrar
         </Button>     
-        <div className="text-center mt-4">
+        <div className="text-center">
           <span className="text-sm text-zinc-400">
             ¿No tienes cuenta?{" "}
             <button

@@ -54,27 +54,27 @@ export default function LoginForm9() {
   return (
     <div className="w-full max-w-md">
       {/* Tarjeta principal */}
-      <div className="bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 rounded-3xl shadow-2xl border border-white/20 p-4 relative overflow-hidden">
+      <div className="bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 rounded-3xl shadow-2xl border border-white/20 p-2 lg:p-4 relative overflow-hidden">
      
         
         {/* Contenido del formulario */}
         <div className="relative z-10">
           {/* Header */}
-          <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-              <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="text-center mb-6 lg:mb-8">
+            <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-3 lg:mb-4 shadow-lg">
+              <svg className="w-5 h-5 lg:w-6 lg:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </div>
-            <h1 className="text-3xl font-bold text-white mb-2">¡Bienvenido de vuelta!</h1>
-            <p className="text-gray-300">Ingresa tus credenciales para continuar</p>
+            <h1 className="text-2xl lg:text-3xl font-bold text-white mb-1 lg:mb-2">¡Bienvenido de vuelta!</h1>
+            <p className="text-base lg:text-lg text-gray-300">Ingresa tus credenciales para continuar</p>
           </div>
 
           {/* Formulario */}
-          <form onSubmit={handleSubmit} className="space-y-2">
+          <form onSubmit={handleSubmit} className="space-y-3 lg:space-y-4">
             {/* Campo Email */}
-            <div className="space-y-2">
-              <Label htmlFor="email" className="text-white font-medium">
+            <div className="space-y-1 lg:space-y-2">
+              <Label htmlFor="email" className="text-base lg:text-lg text-white font-medium">
                 Correo electrónico
               </Label>
               <div className="relative">
@@ -84,11 +84,11 @@ export default function LoginForm9() {
                   value={email}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                   placeholder="tu@email.com"
-                  className="bg-white/10 border-white/20 text-white placeholder-gray-400 rounded-xl h-12 px-4 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
+                  className="bg-white/10 border-white/20 text-white placeholder-gray-400 rounded-xl h-10 lg:h-12 px-3 lg:px-4 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
                   required
                 />
-                <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
-                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="absolute inset-y-0 right-0 pr-2 lg:pr-3 flex items-center">
+                  <svg className="w-5 h-5 lg:w-6 lg:h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
                   </svg>
                 </div>
@@ -96,8 +96,8 @@ export default function LoginForm9() {
             </div>
 
             {/* Campo Contraseña */}
-            <div className="space-y-2">
-              <Label htmlFor="password" className="text-white font-medium">
+            <div className="space-y-1 lg:space-y-2">
+              <Label htmlFor="password" className="text-base lg:text-lg text-white font-medium">
                 Contraseña
               </Label>
               <div className="relative">
@@ -107,11 +107,11 @@ export default function LoginForm9() {
                   value={password}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="bg-white/10 border-white/20 text-white placeholder-gray-400 rounded-xl h-12 px-4 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
+                  className="bg-white/10 border-white/20 text-white placeholder-gray-400 rounded-xl h-10 lg:h-12 px-3 lg:px-4 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
                   required
                 />
-                <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
-                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="absolute inset-y-0 right-0 pr-2 lg:pr-3 flex items-center">
+                  <svg className="w-5 h-5 lg:w-6 lg:h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
                 </div>
@@ -143,7 +143,7 @@ export default function LoginForm9() {
             <Button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-2 lg:py-3 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (
                 <div className="flex items-center space-x-2">
@@ -170,9 +170,9 @@ export default function LoginForm9() {
           <div className="grid grid-cols-2 gap-3">
             <Button
               variant="outline"
-              className="bg-white/10 border-white/20 text-white hover:bg-white/20 rounded-xl h-12 transition-all duration-300"
+              className="bg-white/10 border-white/20 text-white hover:bg-white/20 rounded-xl h-10 lg:h-12 transition-all duration-300 text-base lg:text-lg"
             >
-              <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 lg:w-6 lg:h-6 mr-2" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                 <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
                 <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
@@ -182,9 +182,9 @@ export default function LoginForm9() {
             </Button>
             <Button
               variant="outline"
-              className="bg-white/10 border-white/20 text-white hover:bg-white/20 rounded-xl h-12 transition-all duration-300"
+              className="bg-white/10 border-white/20 text-white hover:bg-white/20 rounded-xl h-10 lg:h-12 transition-all duration-300 text-base lg:text-lg"
             >
-              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 lg:w-6 lg:h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
               </svg>
               Twitter
@@ -192,8 +192,8 @@ export default function LoginForm9() {
           </div>
 
           {/* Enlace de registro */}
-          <div className="text-center mt-6">
-            <p className="text-gray-300">
+          <div className="text-center mt-4 lg:mt-6">
+            <p className="text-base lg:text-lg text-gray-300">
               ¿No tienes una cuenta?{" "}
               <button 
                 type="button"

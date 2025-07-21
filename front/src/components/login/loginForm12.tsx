@@ -66,12 +66,12 @@ export default function LoginForm12() {
         }}
       >
         {/* Avatar */}
-        <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-26 h-26 rounded-full bg-white flex items-center justify-center shadow-xl z-10">
+        <div className="absolute -top-14 left-1/2 -translate-x-1/2 w-26 h-26 rounded-full bg-white flex items-center justify-center shadow-xl z-10">
           <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-500 to-pink-400 flex items-center justify-center">
             <User className="w-12 h-12 text-white" />
           </div>
         </div>
-        <h2 className="text-4xl font-bold text-white mb-10 mt-8 tracking-wide text-center drop-shadow-lg" style={{textShadow: "0 2px 8px #b47aff80"}}>
+        <h2 className="text-4xl font-bold text-white mb-6 mt-6 tracking-wide text-center drop-shadow-lg" style={{textShadow: "0 2px 8px #b47aff80"}}>
           Iniciar Sesión
         </h2>
         <form className="w-full space-y-7" onSubmit={handleSubmit}>

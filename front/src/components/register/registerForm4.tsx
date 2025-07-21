@@ -59,65 +59,65 @@ export default function RegisterForm4() {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-3xl"></div>
 
         {/* Content */}
-        <div className="relative p-6 rounded-3xl border border-white/30 shadow-2xl">
-          <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-gradient-to-r from-blue-400/40 to-purple-400/40 backdrop-blur-sm rounded-2xl mx-auto mb-3 flex items-center justify-center border border-white/40">
+        <div className="relative p-3 lg:p-6 rounded-3xl border border-white/30 shadow-2xl">
+          <div className="text-center mb-6 lg:mb-8">
+            <div className="w-14 h-14 lg:w-16 lg:h-16 bg-gradient-to-r from-blue-400/40 to-purple-400/40 backdrop-blur-sm rounded-2xl mx-auto mb-2 lg:mb-3 flex items-center justify-center border border-white/40">
               <span className="text-2xl">🔮</span>
             </div>
-            <h2 className="text-3xl font-bold text-white drop-shadow-lg">Registrarse</h2>
+            <h2 className="text-2xl lg:text-3xl font-bold text-white drop-shadow-lg">Registrarse</h2>
           </div>
 
-          <form className="space-y-4" onSubmit={handleSubmit}>
+          <form className="space-y-3 lg:space-y-4" onSubmit={handleSubmit}>
             <div>
-              <Label htmlFor="name4" className="text-white font-semibold text-lg">
+              <Label htmlFor="name4" className="text-base lg:text-lg text-white font-semibold">
                 Nombre
               </Label>
               <Input
                 id="name4"
                 type="text"
                 placeholder="Tu nombre completo"
-                className="mt-2 bg-white/80 backdrop-blur-sm border border-white/50 focus:bg-white focus:border-white rounded-2xl h-12 text-gray-800 font-medium"
+                className="mt-2 bg-white/80 backdrop-blur-sm border border-white/50 focus:bg-white focus:border-white rounded-2xl h-11 lg:h-12 text-gray-800 font-medium text-base lg:text-lg px-4 lg:px-5"
                 value={name}
                 onChange={e => setName(e.target.value)}
               />
             </div>
             <div>
-              <Label htmlFor="email4" className="text-white font-semibold text-lg">
+              <Label htmlFor="email4" className="text-base lg:text-lg text-white font-semibold">
                 Email
               </Label>
               <Input
                 id="email4"
                 type="email"
                 placeholder="admin@gmail.com"
-                className="mt-2 bg-white/80 backdrop-blur-sm border border-white/50 focus:bg-white focus:border-white rounded-2xl h-12 text-gray-800 font-medium"
+                className="mt-2 bg-white/80 backdrop-blur-sm border border-white/50 focus:bg-white focus:border-white rounded-2xl h-11 lg:h-12 text-gray-800 font-medium text-base lg:text-lg px-4 lg:px-5"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
               />
             </div>
             <div>
-              <Label htmlFor="password4" className="text-white font-semibold text-lg">
+              <Label htmlFor="password4" className="text-base lg:text-lg text-white font-semibold">
                 Contraseña
               </Label>
               <Input
                 id="password4"
                 type="password"
                 placeholder="Crea una contraseña"
-                className="mt-2 bg-white/80 backdrop-blur-sm border border-white/50 focus:bg-white focus:border-white rounded-2xl h-12 text-gray-800 font-medium"
+                className="mt-2 bg-white/80 backdrop-blur-sm border border-white/50 focus:bg-white focus:border-white rounded-2xl h-11 lg:h-12 text-gray-800 font-medium text-base lg:text-lg px-4 lg:px-5"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
               />
             </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox id="terms4" required className="border-white/60 bg-white/20" />
-              <Label htmlFor="terms4" className="text-sm text-white/90 font-medium">
+            <div className="flex items-center gap-2 lg:gap-3">
+              <Checkbox id="terms4" required className="border-white/60 bg-white/20 w-5 h-5 lg:w-6 lg:h-6" />
+              <Label htmlFor="terms4" className="text-base lg:text-lg text-white/90 font-medium">
                 Acepto los términos y condiciones
               </Label>
             </div>
-            <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 backdrop-blur-sm text-white font-bold h-12 rounded-2xl border border-white/30 shadow-lg" type="submit">
+            <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 backdrop-blur-sm text-white font-bold h-11 lg:h-12 rounded-2xl border border-white/30 shadow-lg text-base lg:text-lg" type="submit">
               Registrarme
             </Button>
             {error && <div className="text-red-300 text-xs text-center mt-2 font-medium">{error}</div>}
-            <p className="text-center text-sm text-white/90 pt-2">
+            <p className="text-center text-base lg:text-lg text-white/90 pt-2">
               ¿Ya tienes cuenta?{" "}
               <a
                 href="#"
