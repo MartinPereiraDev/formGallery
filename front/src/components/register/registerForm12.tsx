@@ -69,19 +69,19 @@ export default function RegisterForm12() {
         }}
       >
         {/* Avatar */}
-        <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-28 h-28 rounded-full bg-white flex items-center justify-center shadow-xl z-10">
-          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-500 to-pink-400 flex items-center justify-center">
-            <User className="w-12 h-12 text-white" />
+        <div className="absolute -top-11 left-1/2 -translate-x-1/2 w-26 h-26 lg:w-28 lg:h-28 rounded-full bg-white flex items-center justify-center shadow-xl z-10">
+          <div className="w-20 h-20 lg:w-20 lg:h-20 rounded-full bg-gradient-to-br from-purple-500 to-pink-400 flex items-center justify-center">
+            <User className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
           </div>
         </div>
-        <h2 className="text-4xl font-bold text-white mb-10 mt-8 tracking-wide text-center drop-shadow-lg" style={{textShadow: "0 2px 8px #b47aff80"}}>
+        <h2 className="text-4xl font-bold text-white mb-6 mt-6 tracking-wide text-center drop-shadow-lg" style={{textShadow: "0 2px 8px #b47aff80"}}>
           Registrarse
         </h2>
-        <form className="w-full space-y-7" onSubmit={handleSubmit}>
+        <form className="w-full space-y-5 lg:space-y-7" onSubmit={handleSubmit}>
           {/* Username */}
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-purple-500 to-pink-400 shadow-md">
-              <User className="w-6 h-6 text-white" />
+          <div className="flex items-center gap-2 lg:gap-3">
+            <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-purple-500 to-pink-400 shadow-md">
+              <User className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
             </div>
             <div className="flex-1 relative">
               <Input
@@ -89,7 +89,7 @@ export default function RegisterForm12() {
                 name="username"
                 type="text"
                 placeholder="Usuario"
-                className="h-12 bg-transparent border-2 border-white/80 rounded-full focus:border-pink-300 focus:ring-pink-200 text-white placeholder:text-white/70 font-semibold shadow-none px-5"
+                className="h-11 lg:h-12 bg-transparent border-2 border-white/80 rounded-full focus:border-pink-300 focus:ring-pink-200 text-white placeholder:text-white/70 font-semibold shadow-none px-4 lg:px-5 text-base lg:text-lg"
                 value={userData.username}
                 onChange={handleInputChange}
                 onBlur={handleBlur}
@@ -97,14 +97,14 @@ export default function RegisterForm12() {
                 style={{boxShadow: "0 0 0 2px rgba(255,255,255,0.18) inset"}}
               />
               {touched.username && errors.username && (
-                <p className="text-pink-200 text-xs mt-1 ml-2">{errors.username}</p>
+                <p className="text-pink-200 text-xs lg:text-base mt-1 ml-2">{errors.username}</p>
               )}
             </div>
           </div>
           {/* Password */}
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-purple-500 to-pink-400 shadow-md">
-              <Lock className="w-6 h-6 text-white" />
+          <div className="flex items-center gap-2 lg:gap-3">
+            <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-purple-500 to-pink-400 shadow-md">
+              <Lock className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
             </div>
             <div className="flex-1 relative">
               <Input
@@ -112,7 +112,7 @@ export default function RegisterForm12() {
                 name="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="Contraseña"
-                className="h-12 bg-transparent border-2 border-white/80 rounded-full focus:border-pink-300 focus:ring-pink-200 text-white placeholder:text-white/70 font-semibold shadow-none px-5 pr-12"
+                className="h-11 lg:h-12 bg-transparent border-2 border-white/80 rounded-full focus:border-pink-300 focus:ring-pink-200 text-white placeholder:text-white/70 font-semibold shadow-none px-4 lg:px-5 pr-10 lg:pr-12 text-base lg:text-lg"
                 value={userData.password}
                 onChange={handleInputChange}
                 onBlur={handleBlur}
@@ -121,21 +121,21 @@ export default function RegisterForm12() {
               />
               <button
                 type="button"
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/80 hover:text-white"
+                className="absolute right-2 lg:right-3 top-1/2 -translate-y-1/2 text-white/80 hover:text-white"
                 onClick={() => setShowPassword((v) => !v)}
                 tabIndex={-1}
               >
-                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                {showPassword ? <EyeOff className="w-5 h-5 lg:w-6 lg:h-6" /> : <Eye className="w-5 h-5 lg:w-6 lg:h-6" />}
               </button>
               {touched.password && errors.password && (
-                <p className="text-pink-200 text-xs mt-1 ml-2">{errors.password}</p>
+                <p className="text-pink-200 text-xs lg:text-base mt-1 ml-2">{errors.password}</p>
               )}
             </div>
           </div>
           {/* Confirm Password */}
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-purple-500 to-pink-400 shadow-md">
-              <Lock className="w-6 h-6 text-white" />
+          <div className="flex items-center gap-2 lg:gap-3">
+            <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-purple-500 to-pink-400 shadow-md">
+              <Lock className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
             </div>
             <div className="flex-1 relative">
               <Input
@@ -143,7 +143,7 @@ export default function RegisterForm12() {
                 name="confirm"
                 type={showConfirm ? "text" : "password"}
                 placeholder="Confirmar Contraseña"
-                className="h-12 bg-transparent border-2 border-white/80 rounded-full focus:border-pink-300 focus:ring-pink-200 text-white placeholder:text-white/70 font-semibold shadow-none px-5 pr-12"
+                className="h-11 lg:h-12 bg-transparent border-2 border-white/80 rounded-full focus:border-pink-300 focus:ring-pink-200 text-white placeholder:text-white/70 font-semibold shadow-none px-4 lg:px-5 pr-10 lg:pr-12 text-base lg:text-lg"
                 value={userData.confirm}
                 onChange={handleInputChange}
                 onBlur={handleBlur}
@@ -152,35 +152,35 @@ export default function RegisterForm12() {
               />
               <button
                 type="button"
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/80 hover:text-white"
+                className="absolute right-2 lg:right-3 top-1/2 -translate-y-1/2 text-white/80 hover:text-white"
                 onClick={() => setShowConfirm((v) => !v)}
                 tabIndex={-1}
               >
-                {showConfirm ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                {showConfirm ? <EyeOff className="w-5 h-5 lg:w-6 lg:h-6" /> : <Eye className="w-5 h-5 lg:w-6 lg:h-6" />}
               </button>
               {touched.confirm && errors.confirm && (
-                <p className="text-pink-200 text-xs mt-1 ml-2">{errors.confirm}</p>
+                <p className="text-pink-200 text-xs lg:text-base mt-1 ml-2">{errors.confirm}</p>
               )}
             </div>
           </div>
           {/* Opciones */}
-          <div className="flex items-center justify-between text-white/90 text-sm mt-1">
-            <div className="flex items-center gap-2">
-              <Checkbox id="terms12" className="border-white/60 bg-white/20" />
+          <div className="flex items-center justify-between text-white/90 text-sm lg:text-base mt-1">
+            <div className="flex items-center gap-2 lg:gap-3">
+              <Checkbox id="terms12" className="border-white/60 bg-white/20 w-5 h-5 lg:w-6 lg:h-6" />
               <Label htmlFor="terms12" className="text-white/90 select-none cursor-pointer">Aceptar términos</Label>
             </div>
           </div>
           {/* Botón */}
           <Button
             type="submit"
-            className="w-full h-12 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-400 hover:from-pink-400 hover:to-blue-500 text-white font-bold shadow-lg mt-2 text-lg tracking-wide border-none"
-            style={{ boxShadow: "0 4px 24px 0 rgba(186,104,200,0.25)", letterSpacing: 1.5, fontSize: "1.25rem" }}
+            className="w-full h-11 lg:h-12 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-400 hover:from-pink-400 hover:to-blue-500 text-white font-bold shadow-lg mt-2 text-base lg:text-lg tracking-wide border-none"
+            style={{ boxShadow: "0 4px 24px 0 rgba(186,104,200,0.25)", letterSpacing: 1.5 }}
           >
             REGISTRARSE
           </Button>
           {/* Links */}
           <div className="text-center mt-2">
-            <span className="text-base text-white/90">¿Ya tienes una cuenta?{' '}
+            <span className="text-base lg:text-lg text-white/90">¿Ya tienes una cuenta?{' '}
               <button
                 type="button"
                 className="text-pink-200 font-bold hover:underline"

@@ -231,12 +231,6 @@ export default function GalleryView() {
                     position: "absolute",
                     left: "50%",
                     top: "50%",
-                    width: "min(95vw, 420px)",
-                    minWidth: "350px",
-                    maxWidth: "420px",
-                    height: "min(90vw, 520px)",
-                    minHeight: "400px",
-                    maxHeight: "520px",
                     transform: `translate(-50%, -50%) ${style.transform || ''}`,
                     opacity: style.opacity,
                     zIndex: zIndex,
@@ -245,6 +239,10 @@ export default function GalleryView() {
                     transition: "all 0.6s cubic-bezier(0.4,0,0.2,1)",
                     pointerEvents: visible ? "auto" : "none",
                   }}
+                  className={`
+                    w-[90vw] h-[200px] min-w-[220px] max-w-[320px] min-h-[120px] max-h-[220px]
+                    sm:w-[420px] sm:h-[520px] sm:min-w-[350px] sm:max-w-[420px] sm:min-h-[400px] sm:max-h-[520px]
+                  `}
                 >
                   <div className="w-full h-full flex items-center justify-center">
                     {formConfig.component}

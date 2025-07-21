@@ -91,7 +91,7 @@ export default function RegisterForm2({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "w-full max-w-md mx-auto flex items-center justify-center bg-white rounded-xl py-8 px-4",
+        "w-full max-w-md mx-auto flex items-center justify-center bg-white rounded-xl py-6 px-4",
         className,
       )}
       style={{ marginTop: 0 }}
@@ -106,7 +106,7 @@ export default function RegisterForm2({ className }: { className?: string }) {
             Regístrate para una experiencia personalizada
           </p>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="name" className="text-sm text-zinc-500 font-medium">
               Nombre
