@@ -17,7 +17,30 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Galería de Formularios",
   description: "Colección de formularios modernos y responsivos para React y Next.js",
+  openGraph: {
+    title: "Galería de Formularios",
+    description: "Explorá una colección de formularios modernos, responsivos y estilizados para React y Next.js.",
+    url: "https://formgallery.vercel.app/", 
+    siteName: "Galería de Formularios",
+    images: [
+      {
+        url: "/formGallery1.png",
+        width: 1200,
+        height: 630,
+        alt: "Vista previa de formularios modernos",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Galería de Formularios",
+    description: "Formularios modernos para tus proyectos con React y Next.js.",
+    images: ["/formGallery1.png"],
+  },
 };
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
