@@ -6,7 +6,7 @@ import { Code, Eye, X, Copy, Check } from "lucide-react"
 import { Button } from "./ui/button"
 import { useToast } from "../hooks/use.toast"
 
-// Importar todos los formularios
+// Import all forms
 import LoginForm1 from "./login/loginForm1"
 import LoginForm2 from "./login/loginForm2"
 import LoginForm3 from "./login/loginForm3"
@@ -43,7 +43,7 @@ interface FormConfig {
     code?: string
 }
 
-// Configuración de formularios con metadatos
+// Configuration of forms with metadata
 const FORM_CONFIGS: Record<TabType, FormConfig[]> = {
     login: [
         {
@@ -246,14 +246,14 @@ export default function Dashboard() {
             } else {
                 toast({
                     title: "Error",
-                    description: "No se pudo cargar el código del formulario",
+                    description: "Could not load the form code",
                     variant: "destructive"
                 })
             }
         } catch {
             toast({
                 title: "Error",
-                description: "Error al cargar el código",
+                description: "Error loading the code",
                 variant: "destructive"
             })
         }
@@ -265,8 +265,8 @@ export default function Dashboard() {
                 await navigator.clipboard.writeText(selectedForm.code)
                 setCopied(true)
                 toast({
-                    title: "Código copiado",
-                    description: "El código se ha copiado al portapapeles",
+                    title: "Code copied",
+                    description: "The code has been copied to the clipboard",
                     variant: "default"
                 })
                 setTimeout(() => setCopied(false), 2000)

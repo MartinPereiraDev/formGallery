@@ -32,11 +32,6 @@ Una galería interactiva de formularios de **Login** y **Registro**, desarrollad
 
 ---
 
-## ✨ Demo
-
-¿Quieres ver la galería en acción? [¡Haz clic aquí para ver la demo!](https://formgallery.vercel.app/)
-
----
 
 ## 📦 Instalación local
 
@@ -143,8 +138,9 @@ Este proyecto está bajo la licencia MIT.
 
 ---
 
+
 ## ✨ Créditos
 
-Diseño con ❤️ por Angélica Bengelsdorff / Martin Pereira 
-linkedin : https://www.linkedin.com/in/martin-pereira-developer/
-
+🎨 **Diseño Original:** Angélica Bengelsdorff - repo: https://github.com/ABengelsdorff/formGallery
+⚡ **Refactorización y Nuevas Funcionalidades:** Martin Pereira  
+🔗 **LinkedIn:** https://www.linkedin.com/in/martin-pereira-developer/
