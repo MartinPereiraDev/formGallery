@@ -145,4 +145,6 @@ Este proyecto está bajo la licencia MIT.
 
 ## ✨ Créditos
 
-Hecho con ❤️ por Angélica Bengelsdorff
+Diseño con ❤️ por Angélica Bengelsdorff / Martin Pereira 
+linkedin : https://www.linkedin.com/in/martin-pereira-developer/
+
